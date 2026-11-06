@@ -1,7 +1,7 @@
 module Runner (runQuiz) where
 
-import Parser (parseInt)
-import Questions (allQuestions, Question (..), renderQuestion)
+import           Parser    (parseInt)
+import           Questions (Question (..), allQuestions, renderQuestion)
 
 runQuiz :: IO ()
 runQuiz = mapM_ runQuestion allQuestions
@@ -21,4 +21,4 @@ runQuestion q@(Question _ _ _ _ _ correct) = do
             answer <- parseInt <$> getLine
             case answer of
                 Nothing -> putStrLn "Please enter a number 1-4!" >> getAnswer
-                Just x -> return x
+                Just x  -> return x
