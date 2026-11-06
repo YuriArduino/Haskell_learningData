@@ -1,0 +1,2 @@
+# Garante que os arquivos Haskell sejam contados e detectados corretamente
+*.hs linguist-detectable=true
