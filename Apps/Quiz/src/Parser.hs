@@ -1,7 +1,7 @@
 module Parser (parseInt) where
 
-import Text.Regex.Applicative (match, many, psym)
-import Data.Char (isSpace, ord, isDigit)
+import           Data.Char              (isDigit, isSpace, ord)
+import           Text.Regex.Applicative (many, match, psym)
 
 parseInt :: String -> Maybe Int
 parseInt = match (spaces *> parse14 <* spaces)
