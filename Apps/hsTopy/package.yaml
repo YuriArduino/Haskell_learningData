@@ -1,0 +1,93 @@
+name:                hsTopy
+version:             0.1.0.0
+github:              "githubuser/hsTopy"
+license:             BSD-3-Clause
+author:              "Author name here"
+maintainer:          "example@example.com"
+copyright:           "2026 Author name here"
+
+extra-source-files:
+  - README.md
+  - CHANGELOG.md
+  - proto/**/*.proto
+
+# Dependencies required by Setup.hs
+custom-setup:
+  dependencies:
+    - base
+    - Cabal
+    - proto-lens-setup
+
+dependencies:
+  - base >= 4.10 && < 5
+
+data-files:
+  - test-vectors/*.hex
+
+ghc-options:
+  - -Wall
+  - -Wcompat
+  - -Widentities
+  - -Wincomplete-record-updates
+  - -Wincomplete-uni-patterns
+  - -Wmissing-export-lists
+  - -Wmissing-home-modules
+  - -Wpartial-fields
+  - -Wredundant-constraints
+
+library:
+  source-dirs: src
+  dependencies:
+    - proto-lens-runtime
+    - bytestring
+  exposed-modules:
+    - Framing
+  generated-exposed-modules:
+    - Proto.Message
+    - Proto.Message_Fields
+
+executables:
+  hsTopy-sender:
+    main: Sender.hs
+    source-dirs: app
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+      - -main-is Sender
+    dependencies:
+      - hsTopy
+      - proto-lens
+      - microlens
+      - bytestring
+
+  hsTopy-receiver:
+    main: Receiver.hs
+    source-dirs: app
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+      - -main-is Receiver
+    dependencies:
+      - hsTopy
+      - proto-lens
+      - microlens
+      - bytestring
+
+tests:
+  hsTopy-test:
+    main: Spec.hs
+    source-dirs: test
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - hsTopy
+      - tasty
+      - tasty-hunit
+      - bytestring
+      - unix
+      - proto-lens
+      - microlens
