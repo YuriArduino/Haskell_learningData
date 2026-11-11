@@ -1,13 +1,10 @@
-# Garante que os arquivos Haskell sejam contados e detectados corretamente
 *.hs linguist-detectable=true
-
-# Garante que os arquivos Python sejam estritamente detectados
 *.py linguist-detectable=true
-*.py linguist-language=Python
 
-# Ignora pastas de ambiente virtual, builds e caches para não distorcer as estatísticas
+# Força os notebooks a contarem como Haskell
+*.ipynb linguist-language=Haskell
+
+# Ignora ruídos de Python (se houver venv)
 .venv/** linguist-vendored
 venv/** linguist-vendored
-env/** linguist-vendored
 __pycache__/** linguist-generated
-*.pyc linguist-generated
