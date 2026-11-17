@@ -1,0 +1,12 @@
+
+hsTopy - File Transfer Experiment
+
+Origem: Python
+Destino: Haskell
+
+Testando transferência de arquivos.
+Caracteres especiais: ação, transmissão, comunicação.
+Números: 1234567890
+
+Fim do arquivo.
+
