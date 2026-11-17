@@ -1,6 +1,35 @@
+
 syntax = "proto3";
 
+// Legacy message: retained for existing tests.
 message Message {
     string content = 1;
     int32 value = 2;
+}
+
+// Main transfer envelope.
+message TransferMessage {
+    oneof body {
+        FileStart start = 1;
+        FileChunk chunk = 2;
+        FileEnd end = 3;
+    }
+}
+
+// Announces a new file transfer.
+message FileStart {
+    string file_name = 1;
+    uint64 file_size = 2;
+    uint32 chunk_size = 3;
+}
+
+// Represents one portion of the file.
+message FileChunk {
+    uint64 index = 1;
+    bytes data = 2;
+}
+
+// Announces the end of the transfer.
+message FileEnd {
+    bytes sha256 = 1;
 }
